@@ -23,6 +23,8 @@ TEST_F( CAccountingTest, QueryAmount_NovemebrTotal30_Daily1 )
     EXPECT_EQ( m_kAccounting.QueryAmount( "20181101", "20181101" ), 1 );
 }
 
+// Todo: «Ý¾ã²z
+
 TEST_F( CAccountingTest, QueryAmount_Check31DaysMonthInSecondHalfYear )
 {
     m_kAccounting.CreateBudget( "201808", 31 );
@@ -39,5 +41,13 @@ TEST_F( CAccountingTest, QueryAmount_Check30DaysMonthInFirstHalfYear )
 {
     m_kAccounting.CreateBudget( "201804", 30 );
     EXPECT_EQ( m_kAccounting.QueryAmount( "20180401", "20180401" ), 1 );
+}
+
+//
+
+TEST_F( CAccountingTest, QueryAmount_NovemberTotal30_Monthly30 )
+{
+    m_kAccounting.CreateBudget( "201811", 30 );
+    EXPECT_EQ( m_kAccounting.QueryAmount( "20181101", "20181130" ), 30 );
 }
 
