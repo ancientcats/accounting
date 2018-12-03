@@ -74,7 +74,14 @@ int CAccounting::PeriodOfOverlappedYearMonth( const std::string& strYearMonth, c
     {
         if ( nMonth == nEndMonth )
         {
-            return nEndDay - nStartDay + 1;
+            if ( nMonth == nStartMonth )
+            {
+                return nEndDay - nStartDay + 1;
+            }
+            else
+            {
+                return nEndDay;
+            }
         }
         else
         {
