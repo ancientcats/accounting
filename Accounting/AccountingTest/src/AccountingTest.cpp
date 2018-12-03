@@ -51,9 +51,15 @@ TEST_F( CAccountingTest, QueryAmount_NovemberTotal30_Monthly30 )
     EXPECT_EQ( m_kAccounting.QueryAmount( "20181101", "20181130" ), 30 );
 }
 
-TEST_F( CAccountingTest, QueryAmount_NovemberTotal30_NovemberAcrossToDecember30 )
+TEST_F( CAccountingTest, QueryAmount_NovemberTotal30_NovemberToDecember30 )
 {
     m_kAccounting.CreateBudget( "201811", 30 );
     EXPECT_EQ( m_kAccounting.QueryAmount( "20181101", "20181231" ), 30 );
+}
+
+TEST_F( CAccountingTest, QueryAmount_NovemberTotal30_NovemberToNextYear30 )
+{
+    m_kAccounting.CreateBudget( "201811", 30 );
+    EXPECT_EQ( m_kAccounting.QueryAmount( "20181101", "20191231" ), 30 );
 }
 

@@ -68,18 +68,17 @@ int CAccounting::PeriodOfOverlappedYearMonth( const std::string& strYearMonth, c
     int nEndDay = std::stoi( strEndYearMonthDate.substr( 6, 2 ) );
 
     int nDays = DaysOfYearMonth( strYearMonth );
-    if ( nYear == nStartYear && nYear == nEndYear )
+    if ( ( nYear == nStartYear && nMonth >= nStartMonth ) || 
+            ( nYear > nStartYear && nYear < nEndYear ) || 
+            ( nYear == nEndYear && nMonth <= nEndMonth ) )
     {
-        if ( nMonth >= nStartMonth && nMonth <= nEndMonth )
+        if ( nMonth == nEndMonth )
         {
-            if ( nMonth == nEndMonth )
-            {
-                return nEndDay - nStartDay + 1;
-            }
-            else
-            {
-                return nDays - nStartDay + 1;
-            }
+            return nEndDay - nStartDay + 1;
+        }
+        else
+        {
+            return nDays - nStartDay + 1;
         }
     }
 
