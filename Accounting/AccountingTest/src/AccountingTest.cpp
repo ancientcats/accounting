@@ -63,9 +63,14 @@ TEST_F( CAccountingTest, QueryAmount_NovemberTotal30_NovemberCrossYear30 )
     EXPECT_EQ( m_kAccounting.QueryAmount( "20181101", "20191231" ), 30 );
 }
 
-TEST_F( CAccountingTest, QueryAmount_NovemberTotal30_CrossMonthOverlapNovemberFirstDay1 )
+TEST_F( CAccountingTest, QueryAmount_NovemberTotal30_CrossMonthOverlapFirstDay1 )
 {
     m_kAccounting.CreateBudget( "201811", 30 );
     EXPECT_EQ( m_kAccounting.QueryAmount( "20181030", "20181101" ), 1 );
 }
 
+TEST_F( CAccountingTest, QueryAmount_NovemberTotal30_CrossMonthOverlapLastDay1 )
+{
+    m_kAccounting.CreateBudget( "201811", 30 );
+    EXPECT_EQ( m_kAccounting.QueryAmount( "20181130", "20181201" ), 1 );
+}
